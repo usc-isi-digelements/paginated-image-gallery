@@ -1,0 +1,105 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../paginated-image-gallery.html">
+</head>
+
+<body>
+  <test-fixture id="paginated-image-gallery-fixture">
+    <template>
+      <paginated-image-gallery></paginated-image-gallery>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('paginated-image-gallery tests', function() {
+      var component;
+
+      setup(function(done) {
+        component = fixture('paginated-image-gallery-fixture');
+        component.imageItems = [{
+          link: 'link1',
+          source: 'source1'
+        }, {
+          link: 'link2',
+          source: 'source2'
+        }];
+        component.totalItems = 2;
+        flush(function() {
+          done();
+        });
+      });
+
+      test('imageItems and totalItems are the correct values', function() {
+        expect(component.imageItems).to.deep.equal([{
+          link: 'link1',
+          source: 'source1'
+        }, {
+          link: 'link2',
+          source: 'source2'
+        }]);
+        expect(component.totalItems).to.equal(2);
+      });
+
+      test('other properties are set to default values', function() {
+        expect(component.imageLinkProperty).to.equal('link');
+        expect(component.imageSourceProperty).to.equal('source');
+        expect(component.blur).to.be.true;
+        expect(component.loading).to.be.false;
+        expect(component.loadType).to.equal('');
+        expect(component.newTab).to.be.false;
+        expect(component.page).to.equal(1);
+        expect(component.shownItems).to.deep.equal([{
+          link: 'link1',
+          source: 'source1'
+        }, {
+          link: 'link2',
+          source: 'source2'
+        }]);
+      });
+
+      test('does have a paginated-list element', function() {
+        var list = component.$$('paginated-list');
+        expect(list).to.exist;
+        expect(list.loading).to.be.false;
+        expect(list.loadType).to.equal('');
+        expect(list.page).to.equal(1);
+        expect(list.totalItems).to.equal(2);
+        expect(list.items).to.deep.equal([{
+          link: 'link1',
+          source: 'source1'
+        }, {
+          link: 'link2',
+          source: 'source2'
+        }]);
+        expect(list.shownItems).to.deep.equal([{
+          link: 'link1',
+          source: 'source1'
+        }, {
+          link: 'link2',
+          source: 'source2'
+        }]);
+      });
+
+      test('does have an image-gallery element', function() {
+        var imageGallery = component.$$('image-gallery');
+        expect(imageGallery).to.exist;
+        expect(imageGallery.blur).to.be.true;
+        expect(imageGallery.newTab).to.be.false;
+        expect(imageGallery.imageLinkProperty).to.equal('link');
+        expect(imageGallery.imageSourceProperty).to.equal('source');
+        expect(imageGallery.images).to.deep.equal([{
+          link: 'link1',
+          source: 'source1'
+        }, {
+          link: 'link2',
+          source: 'source2'
+        }]);
+      });
+    });
+  </script>
+</body>
+</html>

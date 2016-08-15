@@ -1,0 +1,140 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../image-gallery/image-gallery.html">
+<link rel="import" href="../paginated-list/paginated-list.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+
+<!--
+A polymer web component that shows an image-gallery component in a paginated-list component.
+
+Example:
+
+        <paginated-image-gallery
+          image-items="[[list]]"
+          total-items="[[size]]"
+          loading="[[loading]]"
+          page="{{page}}">
+        </paginated-image-gallery>
+
+@demo demo/index.html
+-->
+
+<dom-module id="paginated-image-gallery">
+  <template>
+    <style include="iron-flex iron-flex-alignment"></style>
+
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <paginated-list
+      loading="[[loading]]"
+      load-type="[[loadType]]"
+      items="[[imageItems]]"
+      total-items="[[totalItems]]"
+      page="{{page}}"
+      shown-items="{{shownItems}}">
+
+      <image-gallery
+        images="[[shownItems]]"
+        image-link-property="[[imageLinkProperty]]"
+        image-source-property="[[imageSourceProperty]]"
+        blur="[[blur]]"
+        new-tab="[[newTab]]">
+      </image-gallery>
+    </paginated-list>
+  </template>
+
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'paginated-image-gallery',
+
+      properties: {
+        /**
+         * The images to show in this list that are reset for each new page.
+         */
+        imageItems: {
+          type: Array
+        },
+
+        /**
+         * The total number of images for all pages.
+         */
+        totalItems: {
+          type: Number
+        },
+
+        /**
+         * The images shown in this list that are taken from the input image-items.
+         */
+        shownItems: {
+          type: Array,
+          notify: true
+        },
+
+        /**
+         * The current page.
+         */
+        page: {
+          type: Number,
+          value: 1,
+          notify: true
+        },
+
+        /**
+         * Whether a query is running.
+         */
+        loading: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+
+        /**
+         * The type of items shown in the Loading and Show More text.
+         */
+        loadType: {
+          type: String,
+          value: ''
+        },
+
+        /**
+         * The property of the image objects for their link URL to open information within the application.
+         */
+        imageLinkProperty: {
+          type: String,
+          value: 'link'
+        },
+
+        /**
+         * The property of the image objects for their source URL.
+         */
+        imageSourceProperty: {
+          type: String,
+          value: 'source'
+        },
+
+        /**
+         * Whether to blur the images.
+         */
+        blur: {
+          type: Boolean,
+          value: true
+        },
+
+        /**
+         * Whether to open a link in a new tab.
+         */
+        newTab: {
+          type: Boolean,
+          value: false
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

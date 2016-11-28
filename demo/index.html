@@ -19,27 +19,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <body unresolved>
   <template is="dom-bind" id="demo">
-    <p>Image Items: [{link: http://nextcentury.com, source: NextCentury.png},{link: https://github.com/DigElements/paginated-image-gallery, source: dig.png}]</p>
-    <p>Total Items: 5</p>
+    <p>Image Items: {{stringify(items)}}</p>
+    <p>Shown Items: {{getShownItems(page)}}</p>
+    <p>Total Items: {{items.length}}</p>
     <p>Image Link Property: link</p>
     <p>Image Source Property: source</p>
     <p>Blur: false</p>
     <p>Loading: false</p>
     <p>New Tab: true</p>
+    <p>Page: {{page}}</p>
+    <p>Show More: {{showMore}}</p>
 
     <paginated-image-gallery
-      image-items='[{"link":"http://nextcentury.com","source":"NextCentury.png"},{"link":"https://github.com/DigElements/paginated-image-gallery","source":"dig.png"}]'
-      total-items='5'
-      shown-items='{{shownItems}}'
-      page='{{page}}'
-      image-link-property='link'
-      image-source-property='source'
-      blur=false
+      total-items="{{items.length}}"
+      shown-items="{{shownItems}}"
+      page="{{page}}"
+      image-link-property="link"
+      image-source-property="source"
+      blur="false"
+      show-more="{{showMore}}"
       new-tab>
     </paginated-image-gallery>
-
-    <p>Page: {{page}}</p>
-    <p>Shown Items: {{shownItems}}</p>
   </template>
+  <script>
+    (function(document) {
+      var demo = document.querySelector('#demo');
+
+      demo.shownItems = [{'link':'http://nextcentury.com','source':'NextCentury.png'}];
+      demo.items = [{'link':'http://nextcentury.com','source':'NextCentury.png'},{'link':'https://github.com/DigElements/paginated-image-gallery','source':'dig.png'}];
+      demo.showMore = true;
+
+      demo.stringify = function(json) {
+        return JSON.stringify(json);
+      };
+
+      demo.getShownItems = function(page) {
+        var currentIndex = page - 1;
+
+        if(currentIndex) {
+          this.push('shownItems', this.items[currentIndex]);
+          this.showMore = (this.items.length === this.shownItems.length) ? false : true;
+        }
+        return this.stringify(this.shownItems);
+      };
+
+    })(document);
+  </script>
 </body>
 </html>

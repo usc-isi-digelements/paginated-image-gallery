@@ -2,15 +2,22 @@
 
 A polymer web component that shows an image-gallery component in a paginated-list component.
 
-Example:
+### Example
 ```html
-        <paginated-image-gallery
-          image-items="[[list]]"
-          total-items="[[size]]"
-          loading="[[loading]]"
-          page="{{page}}">
-        </paginated-image-gallery>
+    <paginated-image-gallery
+        image-items="[[list]]"
+        total-items="[[size]]"
+        loading="[[loading]]"
+        page="{{page}}">
+    </paginated-image-gallery>
 ```
+
+### Styling
+
+Custom property                        | Description                    | Default
+---------------------------------------|--------------------------------|--------
+`--paginated-image-gallery-max-height` | The max height of the gallery. | 800px
+
 
 ### Dependencies
 

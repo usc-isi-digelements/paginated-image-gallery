@@ -1,6 +1,6 @@
 # paginated-image-gallery
 
-A polymer web component that shows an image-gallery component in a paginated-list component.
+A Polymer Element showing an image-gallery component in a paginated-list component.
 
 ### Example
 ```html
@@ -13,6 +13,8 @@ A polymer web component that shows an image-gallery component in a paginated-lis
 ```
 
 ### Styling
+
+`<paginated-image-gallery>` provides the following custom properties and mixins for styling:
 
 Custom property                        | Description                    | Default
 ---------------------------------------|--------------------------------|--------

@@ -16,43 +16,43 @@
 
   <script>
     suite('paginated-image-gallery tests', function() {
-      var component;
+      var element;
 
       setup(function(done) {
-        component = fixture('paginated-image-gallery-fixture');
-        component.imageItems = [{
+        element = fixture('paginated-image-gallery-fixture');
+        element.imageItems = [{
           link: 'link1',
           source: 'source1'
         }, {
           link: 'link2',
           source: 'source2'
         }];
-        component.totalItems = 2;
+        element.totalItems = 2;
         flush(function() {
           done();
         });
       });
 
       test('imageItems and totalItems are the correct values', function() {
-        expect(component.imageItems).to.deep.equal([{
+        expect(element.imageItems).to.deep.equal([{
           link: 'link1',
           source: 'source1'
         }, {
           link: 'link2',
           source: 'source2'
         }]);
-        expect(component.totalItems).to.equal(2);
+        expect(element.totalItems).to.equal(2);
       });
 
       test('other properties are set to default values', function() {
-        expect(component.imageLinkProperty).to.equal('link');
-        expect(component.imageSourceProperty).to.equal('source');
-        expect(component.blur).to.be.true;
-        expect(component.loading).to.be.false;
-        expect(component.loadType).to.equal('');
-        expect(component.newTab).to.be.false;
-        expect(component.page).to.equal(1);
-        expect(component.shownItems).to.deep.equal([{
+        expect(element.imageLinkProperty).to.equal('link');
+        expect(element.imageSourceProperty).to.equal('source');
+        expect(element.blur).to.be.false;
+        expect(element.loading).to.be.false;
+        expect(element.loadType).to.equal('');
+        expect(element.newTab).to.be.false;
+        expect(element.page).to.equal(1);
+        expect(element.shownItems).to.deep.equal([{
           link: 'link1',
           source: 'source1'
         }, {
@@ -62,7 +62,7 @@
       });
 
       test('does have a paginated-list element', function() {
-        var list = component.$$('paginated-list');
+        var list = element.$$('paginated-list');
         expect(list).to.exist;
         expect(list.loading).to.be.false;
         expect(list.loadType).to.equal('');
@@ -85,9 +85,9 @@
       });
 
       test('does have an image-gallery element', function() {
-        var imageGallery = component.$$('image-gallery');
+        var imageGallery = element.$$('image-gallery');
         expect(imageGallery).to.exist;
-        expect(imageGallery.blur).to.be.true;
+        expect(imageGallery.blur).to.be.false;
         expect(imageGallery.newTab).to.be.false;
         expect(imageGallery.imageLinkProperty).to.equal('link');
         expect(imageGallery.imageSourceProperty).to.equal('source');

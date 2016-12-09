@@ -4,9 +4,9 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 
 <!--
-A polymer web component that shows an image-gallery component in a paginated-list component.
+A Polymer Element showing an image-gallery component in a paginated-list component.
 
-Example:
+### Example
 
     <paginated-image-gallery
         image-items="[[list]]"
@@ -15,11 +15,13 @@ Example:
         page="{{page}}">
     </paginated-image-gallery>
 
-Styling:
+### Styling
 
-Custom property                        | Description                    | Default
----------------------------------------|--------------------------------|--------
-`--paginated-image-gallery-max-height` | The max height of the gallery. | 800px
+`<paginated-image-gallery>` provides the following custom properties and mixins for styling:
+
+Custom property                        | Description                   | Default
+---------------------------------------|-------------------------------|--------
+`--paginated-image-gallery-max-height` | Maximum height of the gallery | 800px
 
 @demo demo/index.html
 -->
@@ -66,14 +68,18 @@ Custom property                        | Description                    | Defaul
 
       properties: {
         /**
-         * The images to show in this list that are reset for each new page.
+         * (Required) The images to show in this list that are reset for each new page.
+         *
+         * @type {Array}
          */
         imageItems: {
           type: Array
         },
 
         /**
-         * The total number of images for all pages.
+         * (Required) The total number of images for all pages.
+         *
+         * @type {Number}
          */
         totalItems: {
           type: Number
@@ -81,6 +87,8 @@ Custom property                        | Description                    | Defaul
 
         /**
          * The images shown in this list that are taken from the input image-items.
+         *
+         * @type {Array}
          */
         shownItems: {
           type: Array,
@@ -89,6 +97,9 @@ Custom property                        | Description                    | Defaul
 
         /**
          * The current page.
+         *
+         * @type {Number}
+         * @default 1
          */
         page: {
           type: Number,
@@ -98,6 +109,9 @@ Custom property                        | Description                    | Defaul
 
         /**
          * Whether a query is running.
+         *
+         * @type {Boolean}
+         * @default false
          */
         loading: {
           type: Boolean,
@@ -107,6 +121,9 @@ Custom property                        | Description                    | Defaul
 
         /**
          * The type of items shown in the Loading and Show More text.
+         *
+         * @type {String}
+         * @default ''
          */
         loadType: {
           type: String,
@@ -115,6 +132,9 @@ Custom property                        | Description                    | Defaul
 
         /**
          * The property of the image objects for their link URL to open information within the application.
+         *
+         * @type {String}
+         * @default 'link'
          */
         imageLinkProperty: {
           type: String,
@@ -123,6 +143,9 @@ Custom property                        | Description                    | Defaul
 
         /**
          * The property of the image objects for their source URL.
+         *
+         * @type {String}
+         * @default 'source'
          */
         imageSourceProperty: {
           type: String,
@@ -131,14 +154,20 @@ Custom property                        | Description                    | Defaul
 
         /**
          * Whether to blur the images.
+         *
+         * @type {Boolean}
+         * @default false
          */
         blur: {
           type: Boolean,
-          value: true
+          value: false
         },
 
         /**
          * Whether to open a link in a new tab.
+         *
+         * @type {Boolean}
+         * @default false
          */
         newTab: {
           type: Boolean,

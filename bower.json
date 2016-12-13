@@ -4,7 +4,7 @@
   "authors": [
     "Next Century Corporation"
   ],
-  "description": "A Polymer Element showing an image-gallery component in a paginated-list component.",
+  "description": "A Polymer Element showing an image-gallery element in a paginated-list element.",
   "keywords": [
     "web-component",
     "polymer"

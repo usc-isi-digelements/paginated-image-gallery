@@ -48,6 +48,7 @@ Custom property                        | Description                   | Default
       items="[[imageItems]]"
       total-items="[[totalItems]]"
       page="{{page}}"
+      page-size="[[pageSize]]"
       shown-items="{{shownItems}}">
 
       <image-gallery
@@ -114,6 +115,19 @@ Custom property                        | Description                   | Default
           type: Number,
           value: 1,
           notify: true
+        },
+
+        /**
+         * (Optional)
+         *
+         * The page size (or 0 for no page size).
+         *
+         * @type {Number}
+         * @default 0
+         */
+        pageSize: {
+          type: Number,
+          value: 0
         },
 
         /**

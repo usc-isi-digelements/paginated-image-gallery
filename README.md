@@ -18,7 +18,7 @@ A Polymer Element showing an image-gallery element in a paginated-list element.
 
 Custom property                        | Description                    | Default
 ---------------------------------------|--------------------------------|--------
-`--paginated-image-gallery-max-height` | The max height of the gallery. | 800px
+`--paginated-image-gallery-max-height` | The max height of the gallery. | 160px
 
 
 ### Dependencies

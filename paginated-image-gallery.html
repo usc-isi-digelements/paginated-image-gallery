@@ -38,7 +38,7 @@ A Polymer Element showing an image-gallery element in a paginated-list element.
 
 Custom property                        | Description                   | Default
 ---------------------------------------|-------------------------------|--------
-`--paginated-image-gallery-max-height` | Maximum height of the gallery | 800px
+`--paginated-image-gallery-max-height` | Maximum height of the gallery | 160px
 
 @demo demo/index.html
 -->
@@ -53,8 +53,8 @@ Custom property                        | Description                   | Default
       }
 
       paginated-list {
-        /* By default, the height of 5 rows of images. */
-        --paginated-list-max-height: var(--paginated-image-gallery-max-height, 800px);
+        /* By default, the height of 1 row of images. */
+        --paginated-list-max-height: var(--paginated-image-gallery-max-height, 160px);
       }
     </style>
 

@@ -16,10 +16,11 @@ A Polymer Element showing an image-gallery element in a paginated-list element.
 
 `<paginated-image-gallery>` provides the following custom properties and mixins for styling:
 
-Custom property                        | Description                    | Default
----------------------------------------|--------------------------------|--------
-`--paginated-image-gallery-max-height` | The max height of the gallery. | 160px
-
+Custom property                            | Description                                  | Default
+-------------------------------------------|----------------------------------------------|--------
+`--paginated-image-gallery-hovering-color` | The background color of the hovering images. | none
+`--paginated-image-gallery-max-height`     | Maximum height of the gallery                | 160px
+`--paginated-image-gallery-selected-color` | The background color of the selected images. | none
 
 ### Dependencies
 

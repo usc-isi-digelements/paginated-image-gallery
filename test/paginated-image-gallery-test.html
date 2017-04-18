@@ -61,13 +61,16 @@ limitations under the License.
       });
 
       test('other properties are set to default values', function() {
+        expect(element.blur).to.be.false;
+        expect(element.hovering).to.deep.equal([]);
+        expect(element.imageIdProperty).to.equal('id');
         expect(element.imageLinkProperty).to.equal('link');
         expect(element.imageSourceProperty).to.equal('source');
-        expect(element.blur).to.be.false;
         expect(element.loading).to.be.false;
         expect(element.loadType).to.equal('');
         expect(element.newTab).to.be.false;
         expect(element.page).to.equal(1);
+        expect(element.selected).to.deep.equal([]);
         expect(element.shownItems).to.deep.equal([{
           link: 'link1',
           source: 'source1'
@@ -104,9 +107,12 @@ limitations under the License.
         var imageGallery = element.$$('image-gallery');
         expect(imageGallery).to.exist;
         expect(imageGallery.blur).to.be.false;
-        expect(imageGallery.newTab).to.be.false;
+        expect(imageGallery.hovering).to.deep.equal([]);
+        expect(imageGallery.imageIdProperty).to.equal('id');
         expect(imageGallery.imageLinkProperty).to.equal('link');
         expect(imageGallery.imageSourceProperty).to.equal('source');
+        expect(imageGallery.newTab).to.be.false;
+        expect(imageGallery.selected).to.deep.equal([]);
         expect(imageGallery.images).to.deep.equal([{
           link: 'link1',
           source: 'source1'

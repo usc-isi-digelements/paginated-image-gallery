@@ -36,9 +36,11 @@ A Polymer Element showing an image-gallery element in a paginated-list element.
 
 `<paginated-image-gallery>` provides the following custom properties and mixins for styling:
 
-Custom property                        | Description                   | Default
----------------------------------------|-------------------------------|--------
-`--paginated-image-gallery-max-height` | Maximum height of the gallery | 160px
+Custom property                            | Description                                  | Default
+-------------------------------------------|----------------------------------------------|--------
+`--paginated-image-gallery-hovering-color` | The background color of the hovering images. | none
+`--paginated-image-gallery-max-height`     | Maximum height of the gallery                | 160px
+`--paginated-image-gallery-selected-color` | The background color of the selected images. | none
 
 @demo demo/index.html
 -->
@@ -56,6 +58,11 @@ Custom property                        | Description                   | Default
         /* By default, the height of 1 row of images. */
         --paginated-list-max-height: var(--paginated-image-gallery-max-height, 160px);
       }
+
+      image-gallery {
+        --image-hovering-color: var(--paginated-image-gallery-hovering-color);
+        --image-selected-color: var(--paginated-image-gallery-selected-color);
+      }
     </style>
 
     <paginated-list
@@ -69,10 +76,13 @@ Custom property                        | Description                   | Default
 
       <image-gallery
         images="[[shownItems]]"
+        image-id-property="[[imageIdProperty]]"
         image-link-property="[[imageLinkProperty]]"
         image-source-property="[[imageSourceProperty]]"
         blur="[[blur]]"
-        new-tab="[[newTab]]">
+        new-tab="[[newTab]]"
+        selected="[[selected]]"
+        hovering="{{hovering}}">
       </image-gallery>
     </paginated-list>
   </template>
@@ -108,69 +118,29 @@ Custom property                        | Description                   | Default
         },
 
         /**
-         * (Output)
-         *
-         * The images shown in this list that are taken from the input image-items.
-         *
-         * @type {Array}
-         */
-        shownItems: {
-          type: Array,
-          notify: true
-        },
-
-        /**
-         * (Optional|Output)
-         *
-         * The current page.
-         *
-         * @type {Number}
-         * @default 1
-         */
-        page: {
-          type: Number,
-          value: 1,
-          notify: true
-        },
-
-        /**
          * (Optional)
          *
-         * The page size (or 0 for no page size).
-         *
-         * @type {Number}
-         * @default 0
-         */
-        pageSize: {
-          type: Number,
-          value: 0
-        },
-
-        /**
-         * (Optional)
-         *
-         * Whether a query is running.
+         * Whether to blur the images.
          *
          * @type {Boolean}
          * @default false
          */
-        loading: {
+        blur: {
           type: Boolean,
-          value: false,
-          notify: true
+          value: false
         },
 
         /**
          * (Optional)
          *
-         * The type of items shown in the Loading and Show More text.
+         * The property of the image objects for their unique IDs.
          *
          * @type {String}
-         * @default ''
+         * @default 'id'
          */
-        loadType: {
+        imageIdProperty: {
           type: String,
-          value: ''
+          value: 'id'
         },
 
         /**
@@ -202,14 +172,28 @@ Custom property                        | Description                   | Default
         /**
          * (Optional)
          *
-         * Whether to blur the images.
+         * The type of items shown in the Loading and Show More text.
+         *
+         * @type {String}
+         * @default ''
+         */
+        loadType: {
+          type: String,
+          value: ''
+        },
+
+        /**
+         * (Optional)
+         *
+         * Whether a query is running.
          *
          * @type {Boolean}
          * @default false
          */
-        blur: {
+        loading: {
           type: Boolean,
-          value: false
+          value: false,
+          notify: true
         },
 
         /**
@@ -223,6 +207,76 @@ Custom property                        | Description                   | Default
         newTab: {
           type: Boolean,
           value: false
+        },
+
+        /**
+         * (Optional)
+         *
+         * The page size (or 0 for no page size).
+         *
+         * @type {Number}
+         * @default 0
+         */
+        pageSize: {
+          type: Number,
+          value: 0
+        },
+
+        /**
+         * (Optional)
+         *
+         * The list of selected image IDs.
+         *
+         * @type {Array}
+         * @default []
+         */
+        selected: {
+          type: Array,
+          value: function() {
+            return [];
+          }
+        },
+
+        /**
+         * (Output)
+         *
+         * The list of image IDs targeted by a hover event.
+         *
+         * @type {Array}
+         * @default []
+         */
+        hovering: {
+          notify: true,
+          type: Array,
+          value: function() {
+            return [];
+          }
+        },
+
+        /**
+         * (Optional|Output)
+         *
+         * The current page.
+         *
+         * @type {Number}
+         * @default 1
+         */
+        page: {
+          type: Number,
+          value: 1,
+          notify: true
+        },
+
+        /**
+         * (Output)
+         *
+         * The images shown in this list that are taken from the input image-items.
+         *
+         * @type {Array}
+         */
+        shownItems: {
+          type: Array,
+          notify: true
         }
       }
     });

@@ -61,11 +61,12 @@ limitations under the License.
       });
 
       test('other properties are set to default values', function() {
-        expect(element.blur).to.be.false;
         expect(element.hovering).to.deep.equal([]);
         expect(element.imageIdProperty).to.equal('id');
         expect(element.imageLinkProperty).to.equal('link');
         expect(element.imageSourceProperty).to.equal('source');
+        expect(element.smallImageStyleClass).to.equal('');
+        expect(element.largeImageStyleClass).to.equal('');
         expect(element.loading).to.be.false;
         expect(element.loadType).to.equal('');
         expect(element.newTab).to.be.false;
@@ -106,7 +107,6 @@ limitations under the License.
       test('does have an image-gallery element', function() {
         var imageGallery = element.$$('image-gallery');
         expect(imageGallery).to.exist;
-        expect(imageGallery.blur).to.be.false;
         expect(imageGallery.hovering).to.deep.equal([]);
         expect(imageGallery.imageIdProperty).to.equal('id');
         expect(imageGallery.imageLinkProperty).to.equal('link');

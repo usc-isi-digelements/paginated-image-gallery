@@ -79,7 +79,8 @@ Custom property                            | Description                        
         image-id-property="[[imageIdProperty]]"
         image-link-property="[[imageLinkProperty]]"
         image-source-property="[[imageSourceProperty]]"
-        blur="[[blur]]"
+        small-image-style-class="[[smallImageStyleClass]]"
+        large-image-style-class="[[largeImageStyleClass]]"
         new-tab="[[newTab]]"
         selected="[[selected]]"
         hovering="{{hovering}}">
@@ -120,19 +121,6 @@ Custom property                            | Description                        
         /**
          * (Optional)
          *
-         * Whether to blur the images.
-         *
-         * @type {Boolean}
-         * @default false
-         */
-        blur: {
-          type: Boolean,
-          value: false
-        },
-
-        /**
-         * (Optional)
-         *
          * The property of the image objects for their unique IDs.
          *
          * @type {String}
@@ -167,6 +155,32 @@ Custom property                            | Description                        
         imageSourceProperty: {
           type: String,
           value: 'source'
+        },
+
+        /**
+         * (Optional)
+         *
+         * The style class for all the images in the gallery.
+         *
+         * @type {String}
+         * @default ''
+         */
+        smallImageStyleClass: {
+          type: String,
+          value: ''
+        },
+
+        /**
+         * (Optional)
+         *
+         * The style class for any image in a popup.
+         *
+         * @type {String}
+         * @default ''
+         */
+        largeImageStyleClass: {
+          type: String,
+          value: ''
         },
 
         /**

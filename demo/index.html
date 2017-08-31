@@ -18,54 +18,59 @@ limitations under the License.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
   <link rel="import" href="../paginated-image-gallery.html">
 </head>
 
 <body unresolved>
-  <template is="dom-bind" id="demo">
-    <p>Image Items: {{stringify(items)}}</p>
-    <p>Shown Items: {{getShownItems(page)}}</p>
-    <p>Total Items: {{items.length}}</p>
-    <p>Image Link Property: link</p>
-    <p>Image Source Property: source</p>
-    <p>New Tab: true</p>
-    <p>Page: {{page}}</p>
-    <p>Show More: {{showMore}}</p>
+  <dom-bind id="demo">
+    <script>
+      (function(document) {
+        var demo = document.querySelector('#demo');
 
-    <paginated-image-gallery
-      total-items="{{items.length}}"
-      shown-items="{{shownItems}}"
-      page="{{page}}"
-      image-link-property="link"
-      image-source-property="source"
-      show-more="{{showMore}}"
-      new-tab>
-    </paginated-image-gallery>
-  </template>
-  <script>
-    (function(document) {
-      var demo = document.querySelector('#demo');
+        demo.shownItems = [{'id':'1','link':'http://nextcentury.com','source':'NextCentury.png'}];
+        demo.items = [{'id':'1','link':'http://nextcentury.com','source':'NextCentury.png'},{'id':'2','link':'https://github.com/DigElements/paginated-image-gallery','source':'dig.png'}];
+        demo.showMore = true;
 
-      demo.shownItems = [{'link':'http://nextcentury.com','source':'NextCentury.png'}];
-      demo.items = [{'link':'http://nextcentury.com','source':'NextCentury.png'},{'link':'https://github.com/DigElements/paginated-image-gallery','source':'dig.png'}];
-      demo.showMore = true;
+        demo.stringify = function(json) {
+          return JSON.stringify(json);
+        };
 
-      demo.stringify = function(json) {
-        return JSON.stringify(json);
-      };
+        demo.getShownItems = function(page) {
+          var currentIndex = page - 1;
 
-      demo.getShownItems = function(page) {
-        var currentIndex = page - 1;
+          if(currentIndex) {
+            this.push('shownItems', this.items[currentIndex]);
+            this.showMore = (this.items.length === this.shownItems.length) ? false : true;
+          }
+          return this.stringify(this.shownItems);
+        };
 
-        if(currentIndex) {
-          this.push('shownItems', this.items[currentIndex]);
-          this.showMore = (this.items.length === this.shownItems.length) ? false : true;
-        }
-        return this.stringify(this.shownItems);
-      };
+      })(document);
+    </script>
 
-    })(document);
-  </script>
+    <template is="dom-bind" id="demo">
+      <p>Image Items: [[stringify(items)]]</p>
+      <p>Shown Items: [[getShownItems(page)]]</p>
+      <p>Total Items: [[items.length]]</p>
+      <p>Image ID Property: id</p>
+      <p>Image Link Property: link</p>
+      <p>Image Source Property: source</p>
+      <p>New Tab: true</p>
+      <p>Page: [[page]]</p>
+      <p>Show More: [[showMore]]</p>
+      <p>Begin List</p>
+
+      <paginated-image-gallery
+        total-items="{{items.length}}"
+        shown-items="{{shownItems}}"
+        page="{{page}}"
+        show-more="{{showMore}}"
+        new-tab>
+      </paginated-image-gallery>
+
+      <p>End List</p>
+    </template>
+  </dom-bind>
 </body>
 </html>

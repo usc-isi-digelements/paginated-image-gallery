@@ -17,7 +17,6 @@ limitations under the License.
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../image-gallery/image-gallery.html">
 <link rel="import" href="../paginated-list/paginated-list.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 
 <!--
 A Polymer Element showing an image-gallery element in a paginated-list element.
@@ -47,8 +46,6 @@ Custom property                            | Description                        
 
 <dom-module id="paginated-image-gallery">
   <template>
-    <style include="iron-flex iron-flex-alignment"></style>
-
     <style>
       :host {
         display: block;
@@ -205,9 +202,9 @@ Custom property                            | Description                        
          * @default false
          */
         loading: {
+          notify: true,
           type: Boolean,
-          value: false,
-          notify: true
+          value: false
         },
 
         /**
@@ -276,9 +273,9 @@ Custom property                            | Description                        
          * @default 1
          */
         page: {
+          notify: true,
           type: Number,
-          value: 1,
-          notify: true
+          value: 1
         },
 
         /**
@@ -289,8 +286,8 @@ Custom property                            | Description                        
          * @type {Array}
          */
         shownItems: {
-          type: Array,
-          notify: true
+          notify: true,
+          type: Array
         }
       }
     });

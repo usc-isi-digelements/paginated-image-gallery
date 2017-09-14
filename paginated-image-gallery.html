@@ -35,11 +35,14 @@ A Polymer Element showing an image-gallery element in a paginated-list element.
 
 `<paginated-image-gallery>` provides the following custom properties and mixins for styling:
 
-Custom property                            | Description                                  | Default
--------------------------------------------|----------------------------------------------|--------
-`--paginated-image-gallery-hovering-color` | The background color of the hovering images. | none
-`--paginated-image-gallery-max-height`     | Maximum height of the gallery                | 160px
-`--paginated-image-gallery-selected-color` | The background color of the selected images. | none
+Custom property                              | Description                                  | Default
+---------------------------------------------|----------------------------------------------|--------
+`--paginated-image-gallery-hovering-color`   | The background color of the hovering images. | none
+`--paginated-image-gallery-loading-spinner`  | Mixin applied to the loading-spinner.        | none
+`--paginated-image-gallery-max-height`       | Maximum height of the gallery.               | 160px
+`--paginated-image-gallery-scroll-threshold` | Mixin applied to the iron-scroll-threshold.  | none
+`--paginated-image-gallery-selected-color`   | The background color of the selected images. | none
+`--paginated-image-gallery-show-more-button` | Mixin applied to the show more button.       | none
 
 @demo demo/index.html
 -->
@@ -52,6 +55,9 @@ Custom property                            | Description                        
       }
 
       paginated-list {
+        --paginated-list-loading-spinner: var(--paginated-image-gallery-loading-spinner);
+        --paginated-list-scroll-threshold: var(--paginated-image-gallery-scroll-threshold);
+        --paginated-list-show-more-button: var(--paginated-image-gallery-show-more-button);
         /* By default, the height of 1 row of images. */
         --paginated-list-max-height: var(--paginated-image-gallery-max-height, 160px);
       }

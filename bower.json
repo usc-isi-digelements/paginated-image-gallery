@@ -1,7 +1,7 @@
 {
   "name": "paginated-image-gallery",
   "description": "A Polymer Element showing an image-gallery element in a paginated-list element.",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "authors": ["Next Century Corporation"],
   "license": "Apache-2.0",
   "keywords": [
@@ -17,7 +17,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.2",
     "image-gallery": "DigElements/image-gallery#2.0.0",
-    "paginated-list": "DigElements/paginated-list#2.1.0"
+    "paginated-list": "DigElements/paginated-list#2.2.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^2.0.0",

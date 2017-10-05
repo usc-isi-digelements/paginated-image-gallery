@@ -63,8 +63,8 @@ Custom property                              | Description                      
       }
 
       image-gallery {
-        --image-hovering-color: var(--paginated-image-gallery-hovering-color);
-        --image-selected-color: var(--paginated-image-gallery-selected-color);
+        --image-gallery-hovering-color: var(--paginated-image-gallery-hovering-color);
+        --image-gallery-selected-color: var(--paginated-image-gallery-selected-color);
       }
     </style>
 
@@ -81,12 +81,19 @@ Custom property                              | Description                      
         images="[[shownItems]]"
         image-id-property="[[imageIdProperty]]"
         image-link-property="[[imageLinkProperty]]"
+        image-name-property="[[imageNameProperty]]"
         image-source-property="[[imageSourceProperty]]"
-        small-image-style-class="[[smallImageStyleClass]]"
         large-image-style-class="[[largeImageStyleClass]]"
         new-tab="[[newTab]]"
-        selected="[[selected]]"
-        hovering="{{hovering}}">
+        select-icon="[[selectIcon]]"
+        show-delete="[[showDelete]]"
+        show-labels="[[showLabels]]"
+        show-select="[[showSelect]]"
+        small-image-style-class="[[smallImageStyleClass]]"
+        unselect="[[unselect]]"
+        unselect-icon="[[unselectIcon]]"
+        hovering="{{hovering}}"
+        selected="{{selected}}">
       </image-gallery>
     </paginated-list>
   </template>
@@ -100,6 +107,22 @@ Custom property                              | Description                      
 
       properties: {
         /**
+         * (Optional|Output)
+         *
+         * The list of image IDs targeted by a hover event.
+         *
+         * @type {Array}
+         * @default []
+         */
+        hovering: {
+          notify: true,
+          type: Array,
+          value: function() {
+            return [];
+          }
+        },
+
+        /**
          * (Required)
          *
          * The images to show in this list that are reset for each new page.
@@ -108,17 +131,6 @@ Custom property                              | Description                      
          */
         imageItems: {
           type: Array
-        },
-
-        /**
-         * (Required)
-         *
-         * The total number of images for all pages.
-         *
-         * @type {Number}
-         */
-        totalItems: {
-          type: Number
         },
 
         /**
@@ -150,6 +162,19 @@ Custom property                              | Description                      
         /**
          * (Optional)
          *
+         * The property of the image objects for their name.
+         *
+         * @type {String}
+         * @default 'name'
+         */
+        imageNameProperty: {
+          type: String,
+          value: 'name'
+        },
+
+        /**
+         * (Optional)
+         *
          * The property of the image objects for their source URL.
          *
          * @type {String}
@@ -163,38 +188,12 @@ Custom property                              | Description                      
         /**
          * (Optional)
          *
-         * The style class for all the images in the gallery.
-         *
-         * @type {String}
-         * @default ''
-         */
-        smallImageStyleClass: {
-          type: String,
-          value: ''
-        },
-
-        /**
-         * (Optional)
-         *
          * The style class for any image in a popup.
          *
          * @type {String}
          * @default ''
          */
         largeImageStyleClass: {
-          type: String,
-          value: ''
-        },
-
-        /**
-         * (Optional)
-         *
-         * The type of items shown in the Loading and Show More text.
-         *
-         * @type {String}
-         * @default ''
-         */
-        loadType: {
           type: String,
           value: ''
         },
@@ -216,6 +215,19 @@ Custom property                              | Description                      
         /**
          * (Optional)
          *
+         * The type of items shown in the Loading and Show More text.
+         *
+         * @type {String}
+         * @default ''
+         */
+        loadType: {
+          type: String,
+          value: ''
+        },
+
+        /**
+         * (Optional)
+         *
          * Whether to open a link in a new tab.
          *
          * @type {Boolean}
@@ -224,50 +236,6 @@ Custom property                              | Description                      
         newTab: {
           type: Boolean,
           value: false
-        },
-
-        /**
-         * (Optional)
-         *
-         * The page size (or 0 for no page size).
-         *
-         * @type {Number}
-         * @default 0
-         */
-        pageSize: {
-          type: Number,
-          value: 0
-        },
-
-        /**
-         * (Optional)
-         *
-         * The list of selected image IDs.
-         *
-         * @type {Array}
-         * @default []
-         */
-        selected: {
-          type: Array,
-          value: function() {
-            return [];
-          }
-        },
-
-        /**
-         * (Output)
-         *
-         * The list of image IDs targeted by a hover event.
-         *
-         * @type {Array}
-         * @default []
-         */
-        hovering: {
-          notify: true,
-          type: Array,
-          value: function() {
-            return [];
-          }
         },
 
         /**
@@ -285,6 +253,48 @@ Custom property                              | Description                      
         },
 
         /**
+         * (Optional)
+         *
+         * The page size (or 0 for no page size).
+         *
+         * @type {Number}
+         * @default 0
+         */
+        pageSize: {
+          type: Number,
+          value: 0
+        },
+
+        /**
+         * (Optional|Output)
+         *
+         * The list of selected image IDs.
+         *
+         * @type {Array}
+         * @default []
+         */
+        selected: {
+          notify: true,
+          type: Array,
+          value: function() {
+            return [];
+          }
+        },
+
+        /**
+         * (Optional)
+         *
+         * The icon for the "select" button if the image is unselected.
+         *
+         * @type {String}
+         * @default 'done'
+         */
+        selectIcon: {
+          type: String,
+          value: 'done'
+        },
+
+        /**
          * (Output)
          *
          * The images shown in this list that are taken from the input image-items.
@@ -294,7 +304,97 @@ Custom property                              | Description                      
         shownItems: {
           notify: true,
           type: Array
+        },
+
+        /**
+         * (Optional)
+         *
+         * Whether to show the "delete" buttons.
+         *
+         * @type {Boolean}
+         * @default false
+         */
+        showDelete: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * (Optional)
+         *
+         * Whether to show the labels for the images.
+         *
+         * @type {Boolean}
+         * @default false
+         */
+        showLabels: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * (Optional)
+         *
+         * Whether to show the "select" buttons.
+         *
+         * @type {Boolean}
+         * @default false
+         */
+        showSelect: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * (Optional)
+         *
+         * The style class for all the images in the gallery.
+         *
+         * @type {String}
+         * @default ''
+         */
+        smallImageStyleClass: {
+          type: String,
+          value: ''
+        },
+
+        /**
+         * (Required)
+         *
+         * The total number of images for all pages.
+         *
+         * @type {Number}
+         */
+        totalItems: {
+          type: Number
+        },
+
+        /**
+         * (Optional)
+         *
+         * Whether clicking the "select" button for a selected image will unselect it.
+         *
+         * @type {Boolean}
+         * @default false
+         */
+        unselect: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * (Optional)
+         *
+         * The icon for the "select" button if the image is selected.
+         *
+         * @type {String}
+         * @default 'done'
+         */
+        unselectIcon: {
+          type: String,
+          value: 'done'
         }
+
       }
     });
   })();

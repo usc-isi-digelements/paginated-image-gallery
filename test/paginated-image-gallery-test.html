@@ -65,13 +65,13 @@ limitations under the License.
         expect(element.imageIdProperty).to.equal('id');
         expect(element.imageLinkProperty).to.equal('link');
         expect(element.imageSourceProperty).to.equal('source');
-        expect(element.smallImageStyleClass).to.equal('');
         expect(element.largeImageStyleClass).to.equal('');
         expect(element.loading).to.be.false;
         expect(element.loadType).to.equal('');
         expect(element.newTab).to.be.false;
         expect(element.page).to.equal(1);
         expect(element.selected).to.deep.equal([]);
+        expect(element.selectIcon).to.equal('done');
         expect(element.shownItems).to.deep.equal([{
           link: 'link1',
           source: 'source1'
@@ -79,6 +79,12 @@ limitations under the License.
           link: 'link2',
           source: 'source2'
         }]);
+        expect(element.showDelete).to.be.false;
+        expect(element.showLabels).to.be.false;
+        expect(element.showSelect).to.be.false;
+        expect(element.smallImageStyleClass).to.equal('');
+        expect(element.unselect).to.be.false;
+        expect(element.unselectIcon).to.equal('done');
       });
 
       test('does have a paginated-list element', function() {
@@ -108,11 +114,6 @@ limitations under the License.
         var imageGallery = element.$$('image-gallery');
         expect(imageGallery).to.exist;
         expect(imageGallery.hovering).to.deep.equal([]);
-        expect(imageGallery.imageIdProperty).to.equal('id');
-        expect(imageGallery.imageLinkProperty).to.equal('link');
-        expect(imageGallery.imageSourceProperty).to.equal('source');
-        expect(imageGallery.newTab).to.be.false;
-        expect(imageGallery.selected).to.deep.equal([]);
         expect(imageGallery.images).to.deep.equal([{
           link: 'link1',
           source: 'source1'
@@ -120,6 +121,19 @@ limitations under the License.
           link: 'link2',
           source: 'source2'
         }]);
+        expect(imageGallery.imageIdProperty).to.equal('id');
+        expect(imageGallery.imageLinkProperty).to.equal('link');
+        expect(imageGallery.imageSourceProperty).to.equal('source');
+        expect(imageGallery.largeImageStyleClass).to.equal('');
+        expect(imageGallery.newTab).to.be.false;
+        expect(imageGallery.selected).to.deep.equal([]);
+        expect(imageGallery.selectIcon).to.equal('done');
+        expect(imageGallery.showDelete).to.be.false;
+        expect(imageGallery.showLabels).to.be.false;
+        expect(imageGallery.showSelect).to.be.false;
+        expect(imageGallery.smallImageStyleClass).to.equal('');
+        expect(imageGallery.unselect).to.be.false;
+        expect(imageGallery.unselectIcon).to.equal('done');
       });
     });
   </script>

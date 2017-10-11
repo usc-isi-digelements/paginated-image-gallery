@@ -68,7 +68,7 @@ limitations under the License.
         expect(element.imageSourceProperty).to.equal('source');
         expect(element.largeImageStyleClass).to.equal('');
         expect(element.loading).to.be.false;
-        expect(element.loadType).to.equal('');
+        expect(element.loadType).to.equal('Images');
         expect(element.newTab).to.be.false;
         expect(element.page).to.equal(1);
         expect(element.selected).to.deep.equal([]);
@@ -80,9 +80,9 @@ limitations under the License.
           link: 'link2',
           source: 'source2'
         }]);
-        expect(element.showDelete).to.be.false;
         expect(element.showLabels).to.be.false;
         expect(element.showSelect).to.be.false;
+        expect(element.showSelectPreceding).to.be.false;
         expect(element.smallImageStyleClass).to.equal('');
         expect(element.unselect).to.be.false;
         expect(element.unselectIcon).to.equal('done');
@@ -92,7 +92,7 @@ limitations under the License.
         var list = element.$$('paginated-list');
         expect(list).to.exist;
         expect(list.loading).to.be.false;
-        expect(list.loadType).to.equal('');
+        expect(list.loadType).to.equal('Images');
         expect(list.page).to.equal(1);
         expect(list.totalItems).to.equal(2);
         expect(list.items).to.deep.equal([{
@@ -130,9 +130,9 @@ limitations under the License.
         expect(imageGallery.newTab).to.be.false;
         expect(imageGallery.selected).to.deep.equal([]);
         expect(imageGallery.selectIcon).to.equal('done');
-        expect(imageGallery.showDelete).to.be.false;
         expect(imageGallery.showLabels).to.be.false;
         expect(imageGallery.showSelect).to.be.false;
+        expect(imageGallery.showSelectPreceding).to.be.false;
         expect(imageGallery.smallImageStyleClass).to.equal('');
         expect(imageGallery.unselect).to.be.false;
         expect(imageGallery.unselectIcon).to.equal('done');

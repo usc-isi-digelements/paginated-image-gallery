@@ -86,9 +86,9 @@ Custom property                              | Description                      
         large-image-style-class="[[largeImageStyleClass]]"
         new-tab="[[newTab]]"
         select-icon="[[selectIcon]]"
-        show-delete="[[showDelete]]"
         show-labels="[[showLabels]]"
         show-select="[[showSelect]]"
+        show-select-preceding="[[showSelectPreceding]]"
         small-image-style-class="[[smallImageStyleClass]]"
         unselect="[[unselect]]"
         unselect-icon="[[unselectIcon]]"
@@ -222,7 +222,7 @@ Custom property                              | Description                      
          */
         loadType: {
           type: String,
-          value: ''
+          value: 'Images'
         },
 
         /**
@@ -309,19 +309,6 @@ Custom property                              | Description                      
         /**
          * (Optional)
          *
-         * Whether to show the "delete" buttons.
-         *
-         * @type {Boolean}
-         * @default false
-         */
-        showDelete: {
-          type: Boolean,
-          value: false
-        },
-
-        /**
-         * (Optional)
-         *
          * Whether to show the labels for the images.
          *
          * @type {Boolean}
@@ -341,6 +328,19 @@ Custom property                              | Description                      
          * @default false
          */
         showSelect: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * (Optional)
+         *
+         * Whether to show the "select preceding" buttons.
+         *
+         * @type {Boolean}
+         * @default false
+         */
+        showSelectPreceding: {
           type: Boolean,
           value: false
         },
@@ -394,6 +394,7 @@ Custom property                              | Description                      
           type: String,
           value: 'done'
         }
+
       }
     });
   })();

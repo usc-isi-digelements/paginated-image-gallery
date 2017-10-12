@@ -86,6 +86,7 @@ Custom property                              | Description                      
         large-image-style-class="[[largeImageStyleClass]]"
         new-tab="[[newTab]]"
         select-icon="[[selectIcon]]"
+        selected-property="[[selectedProperty]]"
         show-labels="[[showLabels]]"
         show-select="[[showSelect]]"
         show-select-preceding="[[showSelectPreceding]]"
@@ -268,9 +269,9 @@ Custom property                              | Description                      
         /**
          * (Optional|Output)
          *
-         * The list of selected image IDs.
+         * The list of selected image IDs.  Either a list or an object containing a list at its `selectedProperty` property.
          *
-         * @type {Array}
+         * @type {Array|Object}
          * @default []
          */
         selected: {
@@ -279,6 +280,17 @@ Custom property                              | Description                      
           value: function() {
             return [];
           }
+        },
+
+        /**
+         * (Optional)
+         *
+         * The property in the `selected` object containing the list of selected string IDs.  If undefined, assumes that `selected` itself is a list.
+         *
+         * @type {String}
+         */
+        selectedProperty: {
+          type: String
         },
 
         /**

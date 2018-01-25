@@ -73,6 +73,7 @@ limitations under the License.
         expect(element.page).to.equal(1);
         expect(element.selected).to.deep.equal([]);
         expect(element.selectIcon).to.equal('done');
+        expect(element.selectWord).to.equal('Select');
         expect(element.shownItems).to.deep.equal([{
           link: 'link1',
           source: 'source1'
@@ -86,6 +87,7 @@ limitations under the License.
         expect(element.smallImageStyleClass).to.equal('');
         expect(element.unselect).to.be.false;
         expect(element.unselectIcon).to.equal('done');
+        expect(element.unselectWord).to.equal('Unselect');
       });
 
       test('does have a paginated-list element', function() {
@@ -130,12 +132,14 @@ limitations under the License.
         expect(imageGallery.newTab).to.be.false;
         expect(imageGallery.selected).to.deep.equal([]);
         expect(imageGallery.selectIcon).to.equal('done');
+        expect(imageGallery.selectWord).to.equal('Select');
         expect(imageGallery.showLabels).to.be.false;
         expect(imageGallery.showSelect).to.be.false;
         expect(imageGallery.showSelectPreceding).to.be.false;
         expect(imageGallery.smallImageStyleClass).to.equal('');
         expect(imageGallery.unselect).to.be.false;
         expect(imageGallery.unselectIcon).to.equal('done');
+        expect(imageGallery.unselectWord).to.equal('Unselect');
       });
     });
   </script>

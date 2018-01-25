@@ -86,6 +86,7 @@ Custom property                              | Description                      
         large-image-style-class="[[largeImageStyleClass]]"
         new-tab="[[newTab]]"
         select-icon="[[selectIcon]]"
+        select-word="[[selectWord]]"
         selected-property="[[selectedProperty]]"
         show-labels="[[showLabels]]"
         show-select="[[showSelect]]"
@@ -93,6 +94,7 @@ Custom property                              | Description                      
         small-image-style-class="[[smallImageStyleClass]]"
         unselect="[[unselect]]"
         unselect-icon="[[unselectIcon]]"
+        unselect-word="[[unselectWord]]"
         hovering="{{hovering}}"
         selected="{{selected}}">
       </image-gallery>
@@ -307,6 +309,19 @@ Custom property                              | Description                      
         },
 
         /**
+         * (Optional)
+         *
+         * The word for the "select" button text if the image is unselected.
+         *
+         * @type {String}
+         * @default 'Select'
+         */
+        selectWord: {
+          type: String,
+          value: 'Select'
+        },
+
+        /**
          * (Output)
          *
          * The images shown in this list that are taken from the input image-items.
@@ -405,8 +420,20 @@ Custom property                              | Description                      
         unselectIcon: {
           type: String,
           value: 'done'
-        }
+        },
 
+        /**
+         * (Optional)
+         *
+         * The word for the "select" button text if the image is selected.
+         *
+         * @type {String}
+         * @default 'Unselect'
+         */
+        unselectWord: {
+          type: String,
+          value: 'Unselect'
+        }
       }
     });
   })();
